@@ -24,7 +24,7 @@ const suffixes = ['Inc', 'LLC', 'Group', 'Ltd', 'PLC', 'Corp']
 const randomCompanySuffix = () => faker.helpers.arrayElement(suffixes)
 
 // --- Phone ---
-const randomPhoneNumberExt = () => `${faker.number.int(2)}-${faker.phone.number()}`
+const randomPhoneNumberExt = () => `${faker.number.int({ min: 10, max: 99 })}-${faker.phone.number()}`
 
 // --- Finance ---
 const randomCreditCardMask = () => `**** **** **** ${faker.string.numeric({ length: 4 })}`
