@@ -130,6 +130,8 @@ const props: ExtractComponentProps<typeof ClassicLayout> = {
   path: '/widgets',
   selectedClient: 'shell/curl',
   selectedSecuritySchemes: [],
+  hasSecurityRequirements: false,
+  requiredSecurityScopes: [],
   selectedServer,
 }
 
