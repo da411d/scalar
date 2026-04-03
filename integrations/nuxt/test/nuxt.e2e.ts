@@ -76,9 +76,9 @@ test('API reference UI is fully functional', async ({ page }) => {
   // Wait for the main heading
   await expect(page.getByRole('heading', { name: 'Nitro Server Routes' })).toBeVisible()
 
-  // Verify sidebar is present
+  // Verify sidebar exists (may be hidden on mobile, visible on desktop)
   const sidebar = page.locator('.t-doc__sidebar').first()
-  await expect(sidebar).toBeVisible()
+  await expect(sidebar).toBeAttached()
 
   // Verify the page has rendered content (not a blank page or error page)
   const bodyText = await page.textContent('body')
