@@ -50,30 +50,35 @@ export default defineNuxtModule<ModuleOptions>({
     _nuxt.options.imports.transform.exclude.push(/scalar/)
 
     /**
-     * Ensure we transform these cjs dependencies, remove as they get converted to ejs
-     * Last time this was fixed on the nuxt side so we removed this and it started working
-     * however its back so we add this back in
+     * Pre-bundle CommonJS dependencies for Vite dev mode.
      *
-     * error:
-     * doesn't provide an export named: 'default'
+     * Vite's dev server serves dependencies as native ES modules. These CJS packages
+     * need to be pre-bundled to ESM format to avoid "does not provide an export named"
+     * errors in the browser.
+     *
+     * Transitive CJS dependencies from:
+     * - @scalar/openapi-parser: ajv, ajv-draft-04, ajv-formats, jsonpointer
+     * - @scalar/code-highlight: highlight.js, highlightjs-curl, unified (which uses extend)
+     * - @scalar/api-client: whatwg-mimetype
+     * - markdown packages: debug (from micromark)
+     *
+     * Note: Vite may show "Failed to resolve dependency" warnings during startup
+     * because these are workspace dependencies, but they will be correctly resolved
+     * and pre-bundled at runtime.
      */
     _nuxt.options.vite ||= {}
     _nuxt.options.vite.optimizeDeps ||= {}
     _nuxt.options.vite.optimizeDeps.include ||= []
     _nuxt.options.vite.optimizeDeps.include.push(
-      '@scalar/nuxt > @scalar/api-reference',
-      '@scalar/nuxt > jsonpointer',
-      '@scalar/nuxt > ajv-draft-04',
-      '@scalar/nuxt > ajv-formats',
-      '@scalar/nuxt > ajv',
-      '@scalar/nuxt > ajv-draft-04 > ajv',
-      '@scalar/nuxt > ajv-formats > ajv',
-      '@scalar/nuxt > whatwg-mimetype',
-      '@scalar/nuxt > @scalar/openapi-parser',
-      '@scalar/nuxt > debug',
-      '@scalar/nuxt > extend',
-      '@scalar/nuxt > highlightjs-curl',
-      '@scalar/nuxt > highlight.js/lib/core',
+      'jsonpointer',
+      'ajv-draft-04',
+      'ajv-formats',
+      'ajv',
+      'whatwg-mimetype',
+      'debug',
+      'extend',
+      'highlightjs-curl',
+      'highlight.js/lib/core',
     )
 
     // Ensure proper handling of CommonJS modules
