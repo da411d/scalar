@@ -33,13 +33,9 @@ test('Does not throw CJS module errors in browser console', async ({ page }) => 
 
   // Check for CJS module errors
   const cjsErrors = [
-    ...consoleErrors.filter((msg) =>
-      msg.includes('does not provide an export named'),
-    ),
+    ...consoleErrors.filter((msg) => msg.includes('does not provide an export named')),
     ...jsErrors.filter(
-      (error) =>
-        error.message.includes('does not provide an export named') ||
-        error.message.includes('SyntaxError'),
+      (error) => error.message.includes('does not provide an export named') || error.message.includes('SyntaxError'),
     ),
   ]
 
@@ -63,10 +59,14 @@ test('Does not throw CJS module errors in browser console', async ({ page }) => 
       ...jsErrors.filter((error) => error.message.includes(moduleName)),
     ]
 
-    expect(
-      moduleErrors.filter((msg) => msg.includes('does not provide an export')),
-      `Found errors related to ${moduleName} module`,
-    ).toHaveLength(0)
+    // Filter errors that are strings (console errors) or have message property (Error objects)
+    const exportErrors = moduleErrors.filter((msg) =>
+      typeof msg === 'string'
+        ? msg.includes('does not provide an export')
+        : msg.message?.includes('does not provide an export'),
+    )
+
+    expect(exportErrors, `Found errors related to ${moduleName} module`).toHaveLength(0)
   }
 })
 
