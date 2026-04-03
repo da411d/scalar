@@ -1,3 +1,5 @@
+import { type NuxtConfig } from 'nuxt/config'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2025-05-11',
@@ -20,4 +22,4 @@ export default defineNuxtConfig({
       openAPI: true,
     },
   },
-})
+} as NuxtConfig)
