@@ -187,6 +187,7 @@ const isDiscriminatorProperty = computed(() =>
       v-if="shouldDisplayHeadingComputed"
       class="group"
       :enum="hasEnum"
+      :eventBus="eventBus"
       :hideModelNames
       :isDiscriminator="isDiscriminatorProperty"
       :modelName="modelName"
@@ -258,8 +259,8 @@ const isDiscriminatorProperty = computed(() =>
         :name="name"
         :noncollapsible="noncollapsible"
         :options="options"
-        :schemaContext="schemaContext"
-        :schema="objectSchemaForChildren" />
+        :schema="objectSchemaForChildren"
+        :schemaContext="schemaContext" />
     </div>
 
     <!-- Array of objects or nested arrays -->
@@ -274,8 +275,8 @@ const isDiscriminatorProperty = computed(() =>
         :name="name"
         :noncollapsible="noncollapsible"
         :options="options"
-        :schemaContext="schemaContext"
-        :schema="resolve.schema(resolvedArrayItems)" />
+        :schema="resolve.schema(resolvedArrayItems)"
+        :schemaContext="schemaContext" />
     </div>
 
     <!-- Compositions -->
@@ -285,6 +286,7 @@ const isDiscriminatorProperty = computed(() =>
       :breadcrumb="breadcrumb"
       :compact="compact"
       :composition="compositionData.composition"
+      :compositionPath="currentCompositionPath"
       :discriminator="schema?.discriminator"
       :eventBus="eventBus"
       :hideHeading="hideHeading"
@@ -292,7 +294,6 @@ const isDiscriminatorProperty = computed(() =>
       :name="name"
       :noncollapsible="noncollapsible"
       :options="options"
-      :compositionPath="currentCompositionPath"
       :schema="compositionData.value"
       :schemaContext="schemaContext" />
     <SpecificationExtension :value="optimizedValue" />
