@@ -21,10 +21,22 @@
       import { PostHogPlugin } from './src/plugins/posthog-plugin.ts'
       import { sources } from './test/utils/sources.ts'
 
+      const posthogApiKey = import.meta.env.VITE_POSTHOG_API_KEY
+      const posthogApiHost = import.meta.env.VITE_POSTHOG_API_HOST
+      const plugins =
+        posthogApiKey && posthogApiHost
+          ? [
+              PostHogPlugin({
+                apiKey: posthogApiKey,
+                apiHost: posthogApiHost,
+              }),
+            ]
+          : []
+
       Scalar.createApiReference('#app', {
         sources,
         persistAuth: true,
-        plugins: [PostHogPlugin()],
+        plugins,
         // Avoid CORS issues
         proxyUrl: 'https://proxy.scalar.com',
       })

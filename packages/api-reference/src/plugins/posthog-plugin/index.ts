@@ -1,4 +1,4 @@
-import type { ClientPlugin } from '@scalar/oas-utils/helpers'
+import { PostHogClientPlugin } from '@scalar/api-client/plugins'
 import type { ConfigDefaults, PostHog } from 'posthog-js'
 import ph from 'posthog-js'
 
@@ -16,45 +16,6 @@ export type PostHogConfig = {
 }
 
 /**
- * Creates a PostHog client plugin for the embedded API client.
- * Tracks as a separate product ('api-client').
- */
-const createPostHogClientPlugin = (config: PostHogConfig): ClientPlugin => {
-  let posthog: PostHog | null = null
-
-  return {
-    lifecycle: {
-      onInit() {
-        if (typeof window === 'undefined') {
-          return
-        }
-
-        const instance = ph.init(
-          config.apiKey,
-          {
-            api_host: config.apiHost,
-            ...(config.uiHost ? { ui_host: config.uiHost } : {}),
-            ...(config.defaults ? { defaults: config.defaults } : {}),
-            opt_out_capturing_by_default: true,
-          },
-          'scalar-api-client',
-        )
-
-        if (instance) {
-          posthog = instance
-          posthog.register({ product: 'api-client' })
-          posthog.opt_in_capturing()
-        }
-      },
-      onDestroy() {
-        posthog?.reset()
-        posthog = null
-      },
-    },
-  }
-}
-
-/**
  * PostHog analytics plugin for the API Reference.
  *
  * Loading this plugin opts in to analytics for both the API Reference
@@ -68,7 +29,7 @@ export const PostHogPlugin = (config: PostHogConfig): ApiReferencePlugin => {
   return () => ({
     name: 'posthog',
     extensions: [],
-    apiClientPlugins: [createPostHogClientPlugin(config)],
+    apiClientPlugins: [PostHogClientPlugin(config)],
     hooks: {
       onInit() {
         if (typeof window === 'undefined') {
