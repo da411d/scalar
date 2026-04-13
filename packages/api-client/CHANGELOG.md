@@ -1,5 +1,14 @@
 # @scalar/api-client
 
+## 2.43.1
+
+### Patch Changes
+
+- [#8735](https://github.com/scalar/scalar/pull/8735): fix: replace direct cjs mime and curl dependencies with local implementations
+- [#8825](https://github.com/scalar/scalar/pull/8825): chore: moving files around in preparation for the big deletion of client v1
+- [#8794](https://github.com/scalar/scalar/pull/8794): Fix Monaco 0.55 compatibility in JSON/YAML editor language helpers.
+- [#8823](https://github.com/scalar/scalar/pull/8823): fix: prevent address bar text from hiding under fade overlay while typing
+
 ## 2.43.0
 
 ### Minor Changes

@@ -1,5 +1,13 @@
 # @scalar/api-reference
 
+## 1.52.2
+
+### Patch Changes
+
+- [#8791](https://github.com/scalar/scalar/pull/8791): fix test requests so exploded array query parameters keep all values instead of collapsing to the last one
+- [#8825](https://github.com/scalar/scalar/pull/8825): chore: moving files around in preparation for the big deletion of client v1
+- [#8784](https://github.com/scalar/scalar/pull/8784): fix: correctly display schema names
+
 ## 1.52.1
 
 ### Patch Changes

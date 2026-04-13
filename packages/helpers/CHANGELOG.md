@@ -1,5 +1,13 @@
 # @scalar/helpers
 
+## 0.4.4
+
+### Patch Changes
+
+- [#8735](https://github.com/scalar/scalar/pull/8735): fix: replace direct cjs mime and curl dependencies with local implementations
+- [#8735](https://github.com/scalar/scalar/pull/8735): Skip empty MIME parameter values and remove a stale Nuxt optimizeDeps entry for `highlightjs-curl`.
+- [#8825](https://github.com/scalar/scalar/pull/8825): chore: moving files around in preparation for the big deletion of client v1
+
 ## 0.4.3
 
 ### Patch Changes

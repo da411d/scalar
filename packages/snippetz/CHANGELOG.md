@@ -1,5 +1,11 @@
 # @scalar/snippetz
 
+## 0.8.1
+
+### Patch Changes
+
+- [#8818](https://github.com/scalar/scalar/pull/8818): refactor(snippetz): migrate js and node axios plugins off httpsnippet-lite fallback
+
 ## 0.8.0
 
 ### Minor Changes

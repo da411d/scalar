@@ -1,5 +1,11 @@
 # @scalar/oas-utils
 
+## 0.11.2
+
+### Patch Changes
+
+- [#8825](https://github.com/scalar/scalar/pull/8825): chore: moving files around in preparation for the big deletion of client v1
+
 ## 0.11.1
 
 ## 0.11.0

@@ -1,5 +1,11 @@
 # @scalar/mock-server
 
+## 0.9.20
+
+### Patch Changes
+
+- [#8825](https://github.com/scalar/scalar/pull/8825): chore: moving files around in preparation for the big deletion of client v1
+
 ## 0.9.19
 
 ## 0.9.18

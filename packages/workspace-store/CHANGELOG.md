@@ -1,5 +1,11 @@
 # @scalar/workspace-store
 
+## 0.45.1
+
+### Patch Changes
+
+- [#8791](https://github.com/scalar/scalar/pull/8791): fix test requests so exploded array query parameters keep all values instead of collapsing to the last one
+
 ## 0.45.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @scalar/agent-chat
 
+## 0.10.4
+
+### Patch Changes
+
+- [#8735](https://github.com/scalar/scalar/pull/8735): fix: replace direct cjs mime and curl dependencies with local implementations
+
 ## 0.10.3
 
 ## 0.10.2
